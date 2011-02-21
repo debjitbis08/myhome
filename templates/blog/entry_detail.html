@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+{% load markup %}
+{% block title %}<title>Share and Let Share | {{ entry.title }}</title>{% endblock %}
+{% load comments %}
+{% block content %}
+  <div class="entry">
+    <h1 class="title"><a href="{% url entry entry.id %}">{{ entry.title }}</a></h1>
+    <div class="pubDate">{{ entry.pub_date|date:"D, d M Y"}} - {{ entry.author.name }}
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      <a class="addthis_button_googlebuzz"></a>
+      <a class="addthis_button_email"></a>
+      <a class="addthis_button_print"></a>
+      <a class="addthis_button_compact"></a>
+    </div>
+    <script type="text/javascript">var addthis_config = {"data_track_clikback":true}
+    </script>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=debjitbis08"></script>
+    <!-- AddThis Button END -->
+    </div>
+    <div class="body">
+    {% autoescape off %}
+      {{ entry.body_text }}
+    {% endautoescape %}
+    </div>
+  </div>
+  <div class="commentarea"> 
+    <h3 class="reply">
+      {% get_comment_count for entry as comment_count %}
+      {{ comment_count }} Comment(s)
+    </h3>
+    <div class="commentlist">
+      <a name="comments" ></a>
+      {% get_comment_list for entry as comment_list %}
+      {% for comment in comment_list %}
+      <div class="comment {% cycle 'odd' 'even' %}">
+        <a name="c{{ comment.id }}"></a>
+        <div class="left">
+          <span class="author"><a href="{{comment.user_url }}">{{comment.user_name }}</a></span>
+          <span class="metadata">{{ comment.submit_date|date:"M, d Y" }}</span>
+        </div>
+        <div class="right">
+          <div class="body">{{ comment.comment|force_escape|markdown }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="commentform">
+      <h3>Post Your Comment</h3>
+      {% render_comment_form for entry %}   
+    </div>
+  </div>  
+{% endblock %}

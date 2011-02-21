@@ -1,0 +1,48 @@
+{% load comments i18n %}
+{% comment %}
+<script src="/media/assets/js/admin/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+{% endcomment %}
+<div id="commentForm">
+<form action="{% comment_form_target %}" method="post">{% csrf_token %}
+  <input type="hidden" name="next" value="{% url django.views.generic.list_detail.object_detail object_id=entry.id %}" />
+  
+  {% for field in form %}
+    {% if field.is_hidden %}
+      {{ field }}
+    {% endif %}
+  {% endfor %}
+
+	
+	<p {% if form.honeypot.errors %} class="error" {% else %}class="honeypot_para"{% endif %} style="display: none;"><label for="id_honeypot">Leave Blank</label>
+		{{ form.honeypot }}	
+	</p>  
+  
+  	<p {% if form.name.errors %} class="error" {% else %}class="name_para"{% endif %}><label for="id_name">Name</label><br />
+		<input id="id_name" type="text" name="name" required>
+	</p>
+	
+	<p {% if form.email.errors %} class="error" {% else %}class="email_para"{% endif %}><label for="id_email">Email <span style="font-size: 10px;">(Never Published)</span></label><br />
+		<input id="id_email" type="email" name="email" required>
+	</p>
+	
+	<p {% if form.url.errors %} class="error" {% else %}class="url_para"{% endif %}><label for="id_url">Website</label><br />
+		<input id="id_url" type="url" name="url">
+	</p>
+	
+  	<p {% if form.comment.errors %} class="error" {% else %}class="comment_para"{% endif %}><label for="id_comment">Comment</label><br />
+		<textarea id="id_comment" name="comment" cols="40" rows="10" required></textarea>
+		<br />
+		<span>You may use <a href="/media/assets/static/markdownhelp.html" style="color: #555; text-decoration: underline;" target="_blank" rel="#markdownhelp">Markdown syntax</a> here.</span>
+	</p>
+	
+  <p class="submit">
+    <input type="submit" name="post" class="submit-post" value="{% trans "Say It!" %}" />
+    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+  </p>
+</form>
+<div id="markdownhelp">
+	<h2>Markdown Syntax Cheatsheet:</h2>
+	<div class="close"><img src="/media/assets/close.png"></div>
+	<div class="contentWrap"></div>
+</div>
+</div>
