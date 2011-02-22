@@ -7,64 +7,64 @@
   {% load markup %}
   
   {% if not form.errors %}
-  <h2 class="title">Preview Your Comment</h2>
-  {{ comment|force_escape|markdown }}
+    <h2 class="title">Preview Your Comment</h2>
+    {{ comment|force_escape|markdown }}
   {% else %}
-  <h2 class="title">Please correct the errors first:</h2>
+    <h2 class="title">Please correct the errors first:</h2>
   {% endif %}
   <div class="commentForm">
-  <form action="{% comment_form_target %}" method="post">{% csrf_token %}
-  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
-  
-  {% for field in form %}
-    {% if field.is_hidden %}
-      {{ field }}
-    {% endif %}
-  {% endfor %}
+    <form action="{% comment_form_target %}" method="post">{% csrf_token %}
+      {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+      
+      {% for field in form %}
+        {% if field.is_hidden %}
+          {{ field }}
+        {% endif %}
+      {% endfor %}
 
-	
-	<p {% if form.honeypot.errors %} class="error" {% else %}class="honeypot_para"{% endif %} style="display: none;"><label for="id_honeypot">Leave Blank</label>
-		{{ form.honeypot }}	
-	</p>
-	  
-  	<p {% if form.name.errors %} class="error name_para" {% else %}class="name_para"{% endif %}><label for="id_name">Name</label><br />
-		{{ form.name }} &nbsp; 
-		{% if form.name.errors %}
-			<span class="reqMsg">
-			{% for error in form.name.errors %}
-				{{ error }}{% if forloop.last %}{% else %},{% endif %}
-			{% endfor %}
-			</span>
-		{% endif %}
-	</p>
-	
-	<p {% if form.email.errors %} class="error email_para" {% else %}class="email_para"{% endif %}><label for="id_email">Email <span style="font-size: 10px;">(Never Published)</span></label><br />
-		{{ form.email }} &nbsp; 
-		{% if form.email.errors %}
-			<span class="reqMsg">
-			{% for error in form.email.errors %}
-				{{ error }}{% if forloop.last %}{% else %},{% endif %}
-			{% endfor %}
-			</span>
-		{% endif %}
-	</p>
-	
-	<p {% if form.url.errors %} class="error url_para" {% else %}class="url_para"{% endif %}><label for="id_url">Website</label><br />
-		{{ form.url }}	
-	</p>
-	
-  	<p {% if form.comment.errors %} class="error comment_para" {% else %}class="comment_para"{% endif %}>
-  		<label for="id_comment">Comment {% if form.comment.errors %}<span class="reqMsg">(This field is required)</span>{% endif %}</label><br />
-		{{ form.comment }}<br />
-		<span style="font-size: 11px;">You may use <a href="http://daringfireball.net/projects/markdown/syntax" style="color: #555; text-decoration: underline;">Markdown syntax</a> here.</span>
-	</p>
-	
-  <p class="submit">
-    <input type="submit" name="post" class="submit-post" value="{% trans "Say It!" %}" />
-    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
-  </p>
-  
-  <p class="return"><a href="{{ next }}">&larr; Return to original post</a></p>
-</form>
-</div>
+      
+      <p {% if form.honeypot.errors %} class="error" {% else %}class="honeypot_para"{% endif %} style="display: none;"><label for="id_honeypot">Leave Blank</label>
+        {{ form.honeypot }} 
+      </p>
+        
+      <p {% if form.name.errors %} class="error name_para" {% else %}class="name_para"{% endif %}><label for="id_name">Name</label><br />
+        {{ form.name }} &nbsp; 
+        {% if form.name.errors %}
+          <span class="reqMsg">
+          {% for error in form.name.errors %}
+            {{ error }}{% if forloop.last %}{% else %},{% endif %}
+          {% endfor %}
+          </span>
+        {% endif %}
+      </p>
+      
+      <p {% if form.email.errors %} class="error email_para" {% else %}class="email_para"{% endif %}><label for="id_email">Email <span style="font-size: 10px;">(Never Published)</span></label><br />
+        {{ form.email }} &nbsp; 
+        {% if form.email.errors %}
+          <span class="reqMsg">
+          {% for error in form.email.errors %}
+            {{ error }}{% if forloop.last %}{% else %},{% endif %}
+          {% endfor %}
+          </span>
+        {% endif %}
+      </p>
+      
+      <p {% if form.url.errors %} class="error url_para" {% else %}class="url_para"{% endif %}><label for="id_url">Website</label><br />
+        {{ form.url }}  
+      </p>
+      
+      <p {% if form.comment.errors %} class="error comment_para" {% else %}class="comment_para"{% endif %}>
+          <label for="id_comment">Comment {% if form.comment.errors %}<span class="reqMsg">(This field is required)</span>{% endif %}</label><br />
+        {{ form.comment }}<br />
+        <span style="font-size: 11px;">You may use <a href="http://daringfireball.net/projects/markdown/syntax" style="color: #555; text-decoration: underline;">Markdown syntax</a> here.</span>
+      </p>
+      
+      <p class="submit">
+        <input type="submit" name="post" class="submit-post" value="{% trans "Say It!" %}" />
+        <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+      </p>
+      
+      <p class="return"><a href="{{ next }}">&larr; Return to original post</a></p>
+    </form>
+  </div>
 {% endblock %}
