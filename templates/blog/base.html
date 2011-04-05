@@ -49,11 +49,26 @@
     <div class="bottom"></div>
   </div>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script src="/media/assets/js/jquery.tools.min.js"></script>
-  <script src="/media/assets/js/base.js" type="text/javascript"></script>
-  {% if env == 'BASE' %}
   <script type="text/javascript">
+    (function () {
+      var cjsscript = document.createElement('script');
+      cjsscript.src = "/media/assets/js/control.js";
+      var cjssib = document.getElementsByTagName('script')[0];
+      cjssib.parentNode.insertBefore(cjsscript, cjssib);
+    }());
+  </script>
+  <script type="text/cjs" data-cjssrc="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/cjs" data-cjssrc="/media/assets/js/jquery.tools.min.js"></script>
+  <script type="text/cjs" data-cjssrc="/media/assets/js/base.js"></script>
+  <script type="text/cjs" data-cjssrc="//www.hellobar.com/hellobar.js"></script>
+  <script type="text/cjs">
+    new HelloBar(14447,10118);
+  </script>
+  <noscript>
+    Help The Victims of the 8.9 Earthquake in Japan by Spreading Awareness and Aid. <a href="http://goo.gl/wjZQz">Donate</a>
+  </noscript>
+  {% if env == 'BASE' %}
+  <script type="text/cjs">
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-12282646-2']);
