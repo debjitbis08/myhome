@@ -4,7 +4,7 @@
 {% endcomment %}
 <div id="commentForm">
   <form action="{% comment_form_target %}" method="post">{% csrf_token %}
-    <input type="hidden" name="next" value="{% url django.views.generic.list_detail.object_detail object_id=entry.id %}" />
+    <input type="hidden" name="next" value="{% url entry entry.slug %}" />
     
     {% for field in form %}
       {% if field.is_hidden %}
