@@ -508,16 +508,10 @@ li.next .title {
 }
 
 #content .pagination {
-        border-top: 1px solid #333;
-        font-size: 140%;
-        padding-top: 20px;
-}
-
-.pagination a {
-        background-color: #3E4C44;
-        color: #EEE;
-        padding: 5px 10px;
-        font: 12px/12px Arial;
+  border-top: 1px solid #CCC;
+  font-size: 140%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #content .pagination a.newer {
