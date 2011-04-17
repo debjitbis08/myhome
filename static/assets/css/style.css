@@ -1,67 +1,182 @@
-/***************************
-* reset.css
-***************************/
+/**
+ * HTML5 ✰ Boilerplate
+ *
+ * style.css contains a reset, font normalization and some base styles.
+ *
+ * Credit is left where credit is due.
+ * Much inspiration was taken from these projects:
+ * - yui.yahooapis.com/2.8.1/build/base/base.css
+ * - camendesign.com/design/
+ * - praegnanz.de/weblog/htmlcssjs-kickstart
+ */
 
-/* http://meyerweb.com/eric/tools/css/reset/ */
-/* v1.0 | 20080212 */
 
-html, body, div, span, applet, object, iframe,
+/**
+ * html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
+ * v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
+ * html5doctor.com/html-5-reset-stylesheet/
+ */
+
+html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-body {
-	line-height: 1;
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
 }
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
+
+blockquote, q { quotes: none; }
+
 blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+q:before, q:after { content: ""; content: none; }
+
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+input, select { vertical-align: middle; }
+
+
+/**
+ * Font normalization inspired by YUI Library's fonts.css: developer.yahoo.com/yui/
+ */
+
+body { font:13px/1.231 sans-serif; *font-size:small; } /* Hack retained to preserve specificity */
+select, input, textarea, button { font:99% sans-serif; }
+
+/* Normalize monospace sizing:
+   en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+
+/**
+ * Minimal base styles.
+ */
+
+/* Always force a scrollbar in non-IE */
+html { overflow-y: scroll; }
+
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active { outline: none; }
+
+ul, ol { margin-left: 2em; }
+ol { list-style-type: decimal; }
+
+/* Remove margins for navigation lists */
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+small { font-size: 85%; }
+strong, th { font-weight: bold; }
+
+td { vertical-align: top; }
+
+/* Set sub, sup without affecting line-height: gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+pre {
+  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+  white-space: pre; white-space: pre-wrap; word-wrap: break-word;
+  padding: 15px;
 }
 
-/* remember to define focus styles! */
-:focus {
-	outline: 0;
+textarea { overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+
+.ie6 legend, .ie7 legend { margin-left: -7px; } 
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea { margin: 0; }
+
+/* Colors for form validity */
+input:valid, textarea:valid   {  }
+input:invalid, textarea:invalid {
+   border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red;
+}
+.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+
+/* These selection declarations have to be separate
+   No text-shadow: twitter.com/miketaylr/status/12228805301
+   Also: hot pink! */
+::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
+::selection { background:#FF5E99; color:#fff; text-shadow: none; }
+
+/* j.mp/webkit-tap-highlight-color */
+a:link { -webkit-tap-highlight-color: #FF5E99; }
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {  width: auto; overflow: visible; }
+
+/* Bicubic resizing for non-native sized IMG:
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+/**
+ * You might tweak these..
+ */
+
+body, select, input, textarea {
+  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
+  color: #444;
+  /* Set your base font here, to apply evenly */
+  /* font-family: Georgia, serif;  */
 }
 
-/* remember to highlight inserts somehow! */
-ins {
-	text-decoration: none;
-}
-del {
-	text-decoration: line-through;
-}
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+a, a:active, a:visited { color: #607890; }
+a:hover { color: #036; }
 
-/****** End reset.css ******/
+/* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
+   j.mp/bestclearfix */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix { zoom: 1; }
 
-body {background-color: #fff;color:#444;font:13px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;}
+/**
+ * Primary styles
+ *
+ * Author: Debjit Biswas
+ */
+
+body {background-color: #EEE;color:#444;font:1em/1.5 Verdana,"BitStream vera Sans",Helvetica,Sans-serif;}
 
 a, a:visited {
-  color: #333;
   font-weight: bold;
   text-decoration:none;
 }
@@ -69,24 +184,31 @@ a, a:visited {
 a:hover, a:active {color: #00BDF6;}
 
 h1, h2, h3, h4, h5, h6 {
-  color: #222;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: bold;
   line-height: 1.05em;
 }
 
-h1 {font-size:2.5em;margin: 0.6em 0}
-h1.title, #page-title h1 {font-size:4em;margin:0.2em 0 0.3em 0;}
+h1 {font-size:180%;margin: 0.6em 0}
+h1.title, #page-title h1 {font-size:180%;margin:0.2em 0 0.3em 0;}
+.entry h1.title {font-size:180%;margin-bottom: 0.5em;border-bottom:1px solid #BBB;padding-bottom:0.5em;}
+.commentarea h1 {font-size:180%;margin:0.857143em 0;}
 h2 {font-size:1.85em;margin:0.83em 0}
-.entry h2.title {margin-bottom: 0.5em;}
 h3 {font-size:1.75em;margin:0.857143em 0;}
 h4 {font-size:1.5em;margin:1em 0;}
 h5 {font-size:1.333333em;margin:1.125em 0}
 h6 {font-size:1.166667em;margin:1em 0}
 
+span.amp {
+  color: #607890;
+  font-family: Baskerville,'Palatino Linotype',Palatino,Constantia,Georgia,'Book Antiqua','Times New Roman',serif;
+  font-size: 150%;
+  font-style: italic;
+}
+}
+
 p {margin-bottom: 1.538em;}
 
-blockquote {
+.entry blockquote {
   border-left: 3px solid #999;
   color: #999;
   margin: 26px 1.5em;
@@ -123,41 +245,63 @@ img.comics {
 }
 
 div#container {
-        width: 820px;
-        margin: 0 auto;
-        padding-top: 30px;
+    background-color: #F7F7F7;
+    border-left: 1px solid #CCCCCC;
+    border-radius: 10px 10px 0 0;
+    border-right: 1px solid #CCCCCC;
+    -moz-box-shadow: 0 0 12px #888888;
+    -webkit-box-shadow: 0 0 12px #888888;
+    -o-box-shadow: 0 0 12px #888888;
+    box-shadow: 0 0 12px #888888;
+    margin: 0 auto;
+    width: 820px;
 }
 
 div#container .header {
-        padding: 21px 20px 0;
-        text-align: right;
-        margin-bottom: 90px;
+    background-color: #888888;
+    border-radius: 10px 10px 0 0;
+    color: #EEEEEE;
+    margin-top: 20px;
+    padding: 40px 20px 50px;
+    text-align: right;
 }
 
 .header .logo {
-        border-bottom: 8px solid #212121;
-        color: #000;
-        font: bold 1.75em "helvetica", "heveltica meue", arial, sans-serif;
-        float: right;
-        width: 270px;
+  border-bottom: 1px solid #666666;
+  box-shadow: 0 1px 0 #AAAAAA;
+  color: #666666;
+  float: right;
+  font-size: 200%;
+  margin: 0;
+  padding-bottom: 7px;
+  text-shadow: 0 1px 1px #AAAAAA;
+}
+.header .logo a, .header .logo a:visited {
+  color: #666;
 }
 
 .header .quote {
-        float: right;
-        clear: right;
-        font-family: Georgia,serif;
-        font-size: 1.1em;
-        font-style: italic;
-        padding-top: 5px;
+  clear: right;
+  color: #666666;
+  float: right;
+  font-size: 85%;
+  font-style: italic;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 5px;
+  text-shadow: 0 1px 1px #AAAAAA;
 }
 
-div#content {
-        float: left;
-        width: 460px;
-        padding-left: 20px;
+#content {
+  background-color: #FFF;
+  border-right: 1px solid #CCC;
+  float: left;
+  font-size: 80%;
+  width: 460px;
+  padding: 30px 20px 0;
 }
 
-div#content h3 {
+#content h3 {
         margin-bottom: 0.5em;
 }
 
@@ -167,8 +311,8 @@ div#content h3 {
 
 
 .entry .metaData {
-        font-size: 12px;
-        font-weight: bold;
+  font-size: 80%;
+  font-weight: bold;
 }
 
 .entry .pubDate {
@@ -199,26 +343,34 @@ div#content h3 {
 
 /* Comments */
 
+#comments ol {
+  list-style-type: none;
+  margin: 0;
+}
+#comments li.comment {
+  
+}
+
 .commentarea {margin: 50px 0 10px; padding: 0;}
 
-div.commentarea .left {clear:both;float:left;border-top:1px solid #666666;padding:5px 0;text-transform:uppercase;width:20%}
+section.commentarea .left {clear:both;float:left;border-top:1px solid #666666;padding:5px 0;text-transform:uppercase;width:20%}
 
-div.comment {
+.comment {
         clear: both;
         padding: 20px 0;
 }
 
-div.comment .right {border-top:1px solid #ccc;float:left;padding:0 10px;width:75%}
+.comment .right {border-top:1px solid #ccc;float:left;padding:0 10px;width:75%}
 
-div.left .author {display: block; font-size: 11px;}
-div.left .metadata {font-size: 9px;}
+div.left .author {display: block; font-size: 75%;font-weight:bold;}
+div.left .metadata {font-size: 65%;}
 div.commentmeta {
         margin: 20px 0px 10px;
 }
 
-div.comment p {margin-top: 5px;}
+.comment p {margin-top: 5px;}
 
-div.commentform {
+#commentform {
         clear: both;
         padding: 10px 0;
         width: 100%;
@@ -241,6 +393,7 @@ div#commentForm input,
 div#commentForm textarea {
         -moz-border-radius:4px;
         -webkit-border-radius:4px;
+        border-radius:4px;
         border:1px solid #CFCFCF;
         font-size:1em;
         padding:3px;
@@ -275,11 +428,13 @@ div.clearleft {
         clear: left;
 }
 
-div#sidebar {
-        float: right;
-        margin-top: 5.536em;
-        padding-right: 20px;
-        width: 280px;
+#sidebar {
+  float: right;
+  font-size: 75%;
+  line-height: 145%;
+  margin-top: 5.536em;
+  padding-right: 20px;
+  width: 280px;
 }
 
 #sidebar ul {
@@ -293,7 +448,7 @@ div#sidebar {
         padding: 3px 0;
 }
 
-#sidebar > div {margin-bottom: 3em;}
+#sidebar > section, .nav {margin-bottom: 3em;}
 
 #sidebar .subscribe a {
         background: url("/media/assets/rss.png") no-repeat;
@@ -313,10 +468,11 @@ div#sidebar {
         border-bottom: none;
 }
 
-#sidebar h3 {
-        font-size: 1.15em;
-        margin: 0.67em 0;
-        text-transform: uppercase;
+#sidebar h1 {
+  font-size: 110%;
+  letter-spacing: 0.22em;
+  margin: 0.67em 0;
+  text-transform: uppercase;
 }
 
 #sidebar .nav .next,
@@ -324,17 +480,18 @@ div#sidebar {
         padding: 20px 0 20px 0;
 }
 
-div#footer {
-        clear: both;
-        margin-top: 42px;
-        padding: 0 20px;
+footer {
+  clear: both;
+  background-color: #DDD;
+  border-top: 1px solid #CCC;
+  padding: 20px 20px 20px 0;
 }
 
-#footer p {
-        border-top: 8px solid #212121;
+footer p {
         float: right;
         font-size: 12px;
-        padding: 5px 0;
+        padding: 0;
+        margin: 0;
         text-align: right;
         width: 60%;
 }
@@ -350,7 +507,7 @@ li.next .title {
         width: 140px;
 }
 
-div#content .pagination {
+#content .pagination {
         border-top: 1px solid #333;
         font-size: 140%;
         padding-top: 20px;
@@ -363,7 +520,7 @@ div#content .pagination {
         font: 12px/12px Arial;
 }
 
-div#content .pagination a.newer {
+#content .pagination a.newer {
         float: right;
 }
 
@@ -397,3 +554,23 @@ div#comingsoon .middle .message {
         padding-left: 50px;
         padding-top: 50px;
 }
+
+/**** Twitter block ****/
+#twitterbadge h1 {
+  text-transform: none;
+  letter-spacing: 0em;
+  font-size: 90%;
+}
+#twitterbadge h1 a {
+  background: url("../bird_32_gray.png") 0 0 no-repeat;
+  padding-left: 25px;
+  display: block;
+  height: 20px;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+#twitterbadge h1 a:hover {
+  background: url("../bird_32_blue.png") 0 0 no-repeat;
+}
+#twitterbadge ol {font-size:85%;} 
+#twitterbadge ol li {margin-bottom: 5px;} 

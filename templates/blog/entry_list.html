@@ -4,41 +4,37 @@
 
 {% if entry_list %}
   {% for entry in entry_list %}
-    <div class="entry">
-      <h2 class="title"><a href="{% url entry entry.slug %}">{{ entry.title }}</a></h2>
+    <article class="entry">
+      <header>
+        <h1 class="title"><a rel="bookmark" href="{% url entry entry.slug %}">{{ entry.title }}</a></h1>
+      </header>
       <div class="body summary">
         {% autoescape off %}
           {{ entry.body_text|truncatewords_html:50 }}
         {% endautoescape %}     
       </div>
-      {% comment %}
-      <div class="comments">
-        <p>
-        {% get_comment_count for entry as comment_count %}
-        <a href="{% url entry entry.id %}#comments"><div class="commentNum">{{ comment_count }} <span style="font-size: 11px;">Comments</span></div></a>
-        </p>
-      </div>
-      {% endcomment %}
       <div class="metaData">
         <span class="ncomments">
           {% get_comment_count for entry as comment_count %}
           <a href="{% url entry entry.slug %}#comments"><span class="commentNum">{{ comment_count }} Comments</span></a>
         </span>//
-        <span class="date">{{ entry.pub_date|date:"D, d M Y"}}</span>//
+        <time class="date" datetime="{{ entry.pub_date|date:"Y-m-d"}}" pubdate="pubdate">
+          {{ entry.pub_date|date:"D, d M Y"}}
+        </time>//
         <span class="readMore">
           <a href="{% url entry entry.slug %}" title="Read More" >Read More &rarr;</a>
         </span>
       </div>
       <div style="clear: both;"></div>
-    </div>
+    </article>
   {% endfor %}
   {% if page_obj.has_other_pages %}
     <p class="pagination">
       {% if page_obj.has_next %}
-        <a class="older" href="/page/{{ page_obj.next_page_number }}">&larr; Older</a>
+        <a title="Older Posts" rel="prev" class="older" href="/page/{{ page_obj.next_page_number }}">&larr; Older</a>
       {% endif %}
       {% if page_obj.has_previous %}
-        <a class="newer" href="/page/{{ page_obj.previous_page_number }}">Newer &rarr;</a>
+        <a title="Newer Posts" rel="next" class="newer" href="/page/{{ page_obj.previous_page_number }}">Newer &rarr;</a>
       {% endif %}
     </p>
   {% endif %}

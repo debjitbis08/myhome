@@ -1,42 +1,67 @@
 <!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="{{ env }}">
+<!--[if lt IE 7 ]> <html class="no-js ie6 {{ env }}" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 {{ env }}" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 {{ env }}" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js {{ env }}" lang="en"> <!--<![endif]-->
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
   {% block title %}<title>Share and Let Share</title>{% endblock %}
   <link rel="shortcut icon" href="/media/assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen,projection" />
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 <body>
   <div id="container">
-    <div class="header">
-      <div class="logo"><a href="/">Share and let Share</a></div>
-      <div class="quote">Personal Weblog of Debjit Biswas...</div>
-    <div style="clear: both"></div>
-    </div>
-    <div id="content">
+    <header class="header clearfix">
+      <hgroup>
+        <h1 class="logo"><a href="http://www.debjitbiswas.com">Share <span class="amp">&</span> let Share</a></h1>
+        <h2 class="quote">Personal Weblog of Debjit Biswas...</h2>
+      </hgroup>
+    </header>
+    <section id="content">
       {% block content %}{% endblock %}
-    </div>
-    <div id="sidebar">
-      <div class="nav">
-        <h3>Navigation</h3>
+    </section>
+    <aside id="sidebar">
+      <nav class="nav">
+        <header>
+          <h1>Navigation</h1>
+        </header>
         <ul>
-          <li><a class="homeLink" href="/">Home</a></li>
+          <li><a rel="start" class="homeLink" href="/">Home</a></li>
           <li><a class="galleryLink" href="/gallery" rel="#comingsoon">Gallery</a></li>
           <li style="display:none;"><a href="/about">About Me</a></li>
         </ul>
-      </div>
-      <div class="subscribe">
-        <h3>Subscribe</h3>
-        <a href="/latest/feed">RSS</a>
-      </div>
-      <div id="poweredby">
-        <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25_grey.gif" border="0" alt="A Django site." title="A Django site." /></a>
-      </div>
-    </div>
+      </nav>
+      <section class="subscribe">
+        <header>
+          <h1>Subscribe</h1>
+        </header>
+        <a type="application/rss+xml" href="/latest/feed">RSS</a>
+      </section>
+      <section id="twitterbadge">
+        <h1>
+          <a href="http://twitter.com/debjitbis08">Follow me on twitter: @debjitbis08</a>
+        </h1>
+        {% if tweet %}
+          <ol>
+            {% for tw in tweet %}
+              <li>
+                {{ tw.text|urlize }}
+              </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </section>
+      <section id="poweredby">
+        <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25_grey.gif" alt="A Django site." title="A Django site." /></a>
+      </section>
+    </aside>
     <div class="clearleft"></div>
-    <div id="footer">
-      <p>Except where otherwise noted, this work by <b>Debjit Biswas</b> is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-Share Alike 2.5 License</a>.</p>  
-    </div>
+    <footer class="clearfix">
+      <p>Except where otherwise noted, this work by <b>Debjit Biswas</b> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/in/">Creative Commons Attribution-Share Alike 2.5 License</a>.</p>  
+    </footer>
   </div>
 
   <!-- Coming Soon Overlay -->
