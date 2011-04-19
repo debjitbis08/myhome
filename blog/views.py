@@ -5,12 +5,10 @@
 from django.views.generic import list_detail
 from django.shortcuts import get_object_or_404
 from myhome.blog.models import Entry
+from django.http import HttpResponseRedirect
 
-def entry_list(request, num=0):
-    return list_detail.object_list(
-        request,
-        queryset = Entry.objects.all().order_by('-pub_date'),
-        paginate_by = 5,
-        page = num,
-    )
+def redirect_old_urls(request, object_id):
+    entry = Entry.objects.get(pk=object_id)
+    url = entry.get_absolute_url()
+    return HttpResponseRedirect(url)
 

@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from myhome.blog.models import Entry
+from myhome.blog.views import *
 from myhome.blog.feeds import LatestEntriesFeed
 from django.views.generic import ListView, DetailView
 
@@ -14,6 +15,7 @@ urlpatterns = patterns('',
         context_object_name='entry_list',
         paginate_by=5,
     ), name='entry_index'),
+    url(r'^entry/(?P<object_id>\d+)/$', redirect_old_urls),
     url(r'^entry/(?P<slug>[\w\d][-\w\d]*)/$', DetailView.as_view(
         model=Entry,
     ), name="entry"),
