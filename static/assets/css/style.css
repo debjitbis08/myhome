@@ -220,13 +220,13 @@ sup {
 }
 
 pre.code, code.codeBlock {
-        background-color: #F0F4F5;
-        border: 1px solid #C4E9F5;
+  background-color: #F0F4F5;
+  border: 1px solid #C4E9F5;
   display: block;
-        padding: 10px;
-        font: 12px Monaco,monospace,Courier,"Courier New";
-        overflow: auto;
-        margin-bottom: 21px;
+  padding: 10px;
+  font: 12px Monaco,monospace,Courier,"Courier New";
+  overflow: auto;
+  margin-bottom: 21px;
   white-space: pre;
 }
 
@@ -297,7 +297,11 @@ div#container .header {
   float: left;
   font-size: 80%;
   width: 460px;
-  padding: 30px 20px 0;
+  padding: 15px 20px;
+}
+#log h1 {
+  color: #BBB;
+  font-size: 80%;
 }
 
 #content h3 {
@@ -305,7 +309,7 @@ div#container .header {
 }
 
 .entry {
-        margin-bottom: 2.4em;
+  margin-top: 2.4em;
 }
 
 
@@ -336,6 +340,34 @@ div#container .header {
 .entry ol {
         list-style: decimal inside;
         padding-bottom: 10px;
+}
+
+.entry table {
+  width: 100%;
+}
+
+.entry table caption {
+  font-size: 110%;
+  font-weight: bold;
+  padding: 7px 0;
+  border: 1px solid #CBCBCB;
+  border-bottom: none;
+}
+
+.entry table td,
+.entry table th {
+  padding: 3px;
+  border: 1px solid #CBCBCB; 
+}
+
+.entry table tfoot td {
+  border: none;
+  padding-left: 0;
+  font-size: 80%;
+}
+
+.entry table.zebra tr.even {
+  background-color: #DDD;
 }
 
 .addthis_toolbox {float:right;}
@@ -479,20 +511,20 @@ div.clearleft {
         padding: 20px 0 20px 0;
 }
 
-footer {
+#global-footer {
   clear: both;
   background-color: #DDD;
   border-top: 1px solid #CCC;
   padding: 20px 20px 20px 0;
 }
 
-footer p {
-        float: right;
-        font-size: 12px;
-        padding: 0;
-        margin: 0;
-        text-align: right;
-        width: 60%;
+#global-footer p {
+  float: right;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  width: 60%;
 }
 
 li.next .label {

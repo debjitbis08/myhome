@@ -7,7 +7,7 @@
     <header>
       <h1 class="title">{{ entry.title }}</h1>
     </header>
-    <div class="pubDate"> 
+    <footer class="pubDate"> 
       <time datetime="{{ entry.pub_date|date:"Y-m-d"}}" pubdate="pubdate">
         {{ entry.pub_date|date:"D, d M Y"}}
       </time>- {{ entry.author.name }}
@@ -20,10 +20,8 @@
         <a class="addthis_button_print"></a>
         <a class="addthis_button_compact"></a>
       </div>
-      <script type="text/cjs">var addthis_config = {"data_track_clikback":true};</script>
-      <script type="text/cjs" data-cjssrc="http://s7.addthis.com/js/250/addthis_widget.js#username=debjitbis08"></script>
       <!-- AddThis Button END -->
-    </div>
+    </footer>
     <div class="body">
     {% autoescape off %}
       {{ entry.body_text }}

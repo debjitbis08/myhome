@@ -3,6 +3,9 @@
 {% block content %}
 
 {% if entry_list %}
+  <header id="log">
+    <h1>Log</h1>
+  </header>
   {% for entry in entry_list %}
     <article class="entry">
       <header>
@@ -13,7 +16,7 @@
           {{ entry.body_text|truncatewords_html:50 }}
         {% endautoescape %}     
       </div>
-      <div class="metaData">
+      <footer class="metaData">
         <span class="ncomments">
           {% get_comment_count for entry as comment_count %}
           <a href="{% url entry entry.slug %}#comments"><span class="commentNum">{{ comment_count }} Comments</span></a>
@@ -24,19 +27,19 @@
         <span class="readMore">
           <a href="{% url entry entry.slug %}" title="Read More" >Read More &rarr;</a>
         </span>
-      </div>
+      </footer>
       <div style="clear: both;"></div>
     </article>
   {% endfor %}
   {% if page_obj.has_other_pages %}
-    <p class="pagination">
+    <nav class="pagination">
       {% if page_obj.has_next %}
         <a title="Older Posts" rel="prev" class="older" href="/page/{{ page_obj.next_page_number }}">&larr; Older</a>
       {% endif %}
       {% if page_obj.has_previous %}
         <a title="Newer Posts" rel="next" class="newer" href="/page/{{ page_obj.previous_page_number }}">Newer &rarr;</a>
       {% endif %}
-    </p>
+    </nav>
   {% endif %}
 {% else %}
   <p>No Blog entries yet...</p>
