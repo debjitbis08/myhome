@@ -219,7 +219,8 @@ sup {
   vertical-align: top;
 }
 
-pre.code, code.codeBlock {
+pre.code, code.codeBlock,
+article.entry pre code {
   background-color: #F0F4F5;
   border: 1px solid #C4E9F5;
   display: block;
