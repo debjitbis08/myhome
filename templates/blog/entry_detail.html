@@ -34,6 +34,12 @@
         {% get_comment_count for entry as comment_count %}
         {{ comment_count }} Comment(s)
       </h1>
+      <a id="comment-subscribe-email" href="/entry/{{entry.id}}/subscribe" title="Subscribe to comments by email">
+        Subscribe by email
+      </a>
+      <a id="comment-form-link" href="#commentform" title="Post your comment">
+        Post a comment
+      </a>
       {% get_comment_list for entry as comment_list %}
       <ol>
         {% for comment in comment_list %}

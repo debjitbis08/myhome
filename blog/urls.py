@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^entry/(?P<slug>[\w\d][-\w\d]*)/$', DetailView.as_view(
         model=Entry,
     ), name="entry"),
+    (r'^entry/(?P<entry_id>\d+)/subscribe/$', subcribe_by_email),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^latest/feed/$', LatestEntriesFeed()),
 )

@@ -38,3 +38,11 @@ class Entry(models.Model):
     
     class Meta:
         verbose_name_plural = "Entries"
+
+class CommentSubscriber(models.Model):
+    entries = models.ManyToManyField(Entry)
+    email = models.EmailField()
+
+    def __unicode__(self):
+        return self.email
+

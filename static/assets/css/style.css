@@ -378,17 +378,13 @@ div#container .header {
   list-style-type: none;
   margin: 0;
 }
-#comments li.comment {
-  
-}
-
 .commentarea {margin: 50px 0 10px; padding: 0;}
 
 section.commentarea .left {clear:both;float:left;border-top:1px solid #666666;padding:5px 0;text-transform:uppercase;width:20%}
 
 .comment {
-        clear: both;
-        padding: 20px 0;
+  clear: both;
+  padding: 20px 0;
 }
 
 .comment .right {border-top:1px solid #ccc;float:left;padding:0 10px;width:75%}
@@ -400,6 +396,12 @@ div.commentmeta {
 }
 
 .comment p {margin-top: 5px;}
+
+#comment-form-link,
+#comment-subscribe-email {
+  font-size: 85%;
+}
+#comment-form-link {float:right;}
 
 #commentform {
         clear: both;
@@ -598,4 +600,4 @@ div#comingsoon .middle .message {
   background: url("../bird_32_blue.png") 0 0 no-repeat;
 }
 #twitterbadge ol {font-size:85%;} 
-#twitterbadge ol li {margin-bottom: 5px;} 
+#twitterbadge ol li {margin-bottom: 5px; word-wrap:break-word;} 
