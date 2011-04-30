@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <p>
+    <form action='#' method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+  </p>
+  <p>Please Note: There is no unsubscribe option yet, but it is being worked upon.</p>
+{% endblock %}
