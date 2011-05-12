@@ -245,16 +245,16 @@ img.comics {
 }
 
 div#container {
-    background-color: #F7F7F7;
-    border-left: 1px solid #CCCCCC;
-    border-radius: 10px 10px 0 0;
-    border-right: 1px solid #CCCCCC;
-    -moz-box-shadow: 0 0 12px #888888;
-    -webkit-box-shadow: 0 0 12px #888888;
-    -o-box-shadow: 0 0 12px #888888;
-    box-shadow: 0 0 12px #888888;
-    margin: 0 auto;
-    width: 820px;
+  background: url("/media/assets/aside_bkg.jpg") repeat-y right #FFF;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 10px 10px 0 0;
+  border-right: 1px solid #CCCCCC;
+  -moz-box-shadow: 0 0 12px #888888;
+  -webkit-box-shadow: 0 0 12px #888888;
+  -o-box-shadow: 0 0 12px #888888;
+  box-shadow: 0 0 12px #888888;
+  margin: 0 auto;
+  width: 820px;
 }
 
 div#container .header {
@@ -293,8 +293,6 @@ div#container .header {
 }
 
 #content {
-  background-color: #FFF;
-  border-right: 1px solid #CCC;
   float: left;
   font-size: 80%;
   width: 460px;
@@ -463,11 +461,10 @@ div.clearleft {
 }
 
 #sidebar {
-  float: right;
+  float: left;
   font-size: 75%;
   line-height: 145%;
-  margin-top: 5.536em;
-  padding-right: 20px;
+  padding: 5.536em 20px 0;
   width: 280px;
 }
 
