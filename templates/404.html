@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <style>
+    .error404 { padding-bottom: 10em; }
+    .error404 h1 {
+      color: #F64433;
+      font-size: 400%;
+      font-weight: normal;
+    }
+    .error404 p {
+      font-size: 150%;
+      margin: 1.538em 0 0;
+    }
+    .error404 ul {
+      font-size: 120%;
+    }
+    .error404 a {
+      color: #00AA00;
+    }
+  </style>
+  <div class="error404">
+    <h1>404 Attack!!</h1>
+    <p>These monsters are attracted to:</p>
+    <ul>
+      <li>mistyped addresses</li>
+      <li>out-of-date links</li>
+    </ul>
+    <p>Go <a rel="start" href="/">HOME</a> and save yourself, I'll handle this monster. Go Now!!</p>
+  </div>
+{% endblock %}
