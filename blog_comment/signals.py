@@ -1,9 +1,9 @@
-from django.contrib.comments.signals import comment_was_posted
+from django.contrib.comments.signals import comment_was_flagged
 from django.core.mail import send_mass_mail
 from myhome.blog.models import CommentSubscriber
 from django.conf import settings
 
-def comment_notifier (sender, comment, **kwargs):
+def comment_notifier (sender, comment, flag, created, request, **kwargs):
 
     """ Email admins when a new comment is posted """
     if comment.is_public:

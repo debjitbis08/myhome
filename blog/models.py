@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.comments.moderation import CommentModerator, moderator
 
 # Create your models here.
 
@@ -46,3 +47,8 @@ class CommentSubscriber(models.Model):
     def __unicode__(self):
         return self.email
 
+class EntryModerator(CommentModerator):
+    auto_moderate_field = 'pub_date'
+    moderate_after = 0
+
+moderator.register (Entry, EntryModerator)
