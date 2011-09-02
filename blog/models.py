@@ -25,7 +25,7 @@ class Entry(models.Model):
     body_text = models.TextField()
     pub_date = models.DateTimeField()
     author = models.ForeignKey(Author)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     
     def __unicode__(self):
         return self.title
