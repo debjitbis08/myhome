@@ -364,6 +364,23 @@ div#container .header {
         margin: -0.8em 0 1em;
 }
 
+.entry .tags ul {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry .tags li {
+  float: left;
+  padding: 0 0 0 5px;
+}
+
+.entry .tags span {
+  display: block;
+  float: left;
+}
+
 .entry .summary {
   margin-bottom: 1.538em;
 }

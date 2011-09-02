@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.comments.moderation import CommentModerator, moderator
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -24,6 +25,7 @@ class Entry(models.Model):
     body_text = models.TextField()
     pub_date = models.DateTimeField()
     author = models.ForeignKey(Author)
+    tags = TaggableManager()
     
     def __unicode__(self):
         return self.title

@@ -27,6 +27,14 @@
       {{ entry.body_text }}
     {% endautoescape %}
     </div>
+    <footer class="tags clearfix">
+      <span>Tagged to</span>
+      <ul class="clearfix">
+        {% for tag in entry.tags.all %}
+          <li><a href="/tags/{{tag.slug}}">{{ tag.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </footer>
   </article>
   <section class="commentarea"> 
     <section id="comments" class="commentlist">
