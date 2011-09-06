@@ -15,7 +15,11 @@ def latest_tweets(request):
     if tweet:
         return {'tweet': tweet}
 
-    tweet = twitter.Api().GetUserTimeline(settings.TWITTER_USER)[0:8]
+    try:
+        tweet = twitter.Api().GetUserTimeline(settings.TWITTER_USER)[0:8]
+    except Exception:
+        pass
+
     cache.set( 'tweet', tweet, settings.TWITTER_TIMEOUT )
 
     return {"tweet": tweet}
