@@ -1,37 +1,66 @@
 {% extends "blog/base.html" %}
 {% load markup %}
-{% block title %}<title>Share and Let Share | {{ entry.title }}</title>{% endblock %}
+{% load blog %}
 {% load comments %}
+{% load gravatar %}
+
+{% block title %}Share and Let Share | {{ entry.title }}{% endblock %}
+
+{% block sidebar %}
+  <section id="latest_posts">
+    <h1>Latest Posts</h1>
+    {% get_latest_posts 10 as latest_posts %}
+    <ul>
+      {% for entry in latest_posts %}
+        <li>
+          <a href="{% url entry entry.slug %}">{{ entry.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {{ block.super }}
+{% endblock %}
+
 {% block content %}
   <article class="entry">
     <header>
       <h1 class="title">{{ entry.title }}</h1>
     </header>
-    <footer class="pubDate"> 
+    <footer class="meta"> 
       <time datetime="{{ entry.pub_date|date:"Y-m-d"}}" pubdate="pubdate">
         {{ entry.pub_date|date:"D, d M Y"}}
       </time>- {{ entry.author.name }}
-      <!-- AddThis Button BEGIN -->
-      <div class="addthis_toolbox addthis_default_style">
-        <a class="addthis_button_facebook"></a>
-        <a class="addthis_button_twitter"></a>
-        <a class="addthis_button_googlebuzz"></a>
-        <a class="addthis_button_email"></a>
-        <a class="addthis_button_print"></a>
-        <a class="addthis_button_compact"></a>
+      <div class="share">
+        <div class="addthis_toolbox addthis_default_style ">
+          <a class="addthis_button_preferred_1"></a>
+          <a class="addthis_button_preferred_2"></a>
+          <a class="addthis_button_preferred_3"></a>
+          <a class="addthis_button_preferred_4"></a>
+          <a class="addthis_button_compact"></a>
+          <a class="addthis_counter addthis_bubble_style"></a>
+        </div>
       </div>
-      <!-- AddThis Button END -->
     </footer>
     <div class="body">
     {% autoescape off %}
       {{ entry.body_text }}
     {% endautoescape %}
     </div>
+    <footer class="share">
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style"  addthis:url="http://www.debjitbiswas.com{% url entry entry.slug %}" addthis:title="{{ entry.title }}">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+      </div>
+      <!-- AddThis Button END -->
+    </footer>
     <footer class="tags clearfix">
       <span>Tagged to</span>
       <ul class="clearfix">
         {% for tag in entry.tags.all %}
-          <li><a href="/tags/{{tag.slug}}">{{ tag.name }}</a></li>
+          <li>{% if forloop.first %}: {% else %},{% endif %} <a href="/tags/{{tag.slug}}">{{ tag.name }}</a></li>
         {% endfor %}
       </ul>
     </footer>
@@ -53,6 +82,9 @@
         {% for comment in comment_list %}
         <li id="c{{ comment.id }}" class="comment {% cycle 'odd' 'even' %} clearfix">
           <div class="left">
+            <span class="gravatar">
+              <img src="{% get_gravatar_url comment.user_email %}"/>
+            </span>
             <span class="author">
               {% if comment.user_url %}
                 <a href="{{ comment.user_url }}"><cite>{{ comment.user_name }}</cite></a></span>
@@ -71,7 +103,11 @@
     
     <section id="commentform">
       <h1>Post Your Comment</h1>
-      {% render_comment_form for entry %}   
+      {% if entry.allow_comments %}
+        {% render_comment_form for entry %}
+      {% else %}
+        Comments are closed.
+      {% endif %}
     </section>
   </section>  
 {% endblock %}

@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.comments.moderation import CommentModerator, moderator
 from taggit.managers import TaggableManager
 
+import datetime
+
 # Create your models here.
 
 class Blog(models.Model):
@@ -38,6 +40,10 @@ class Entry(models.Model):
 
     def get_next_entry(self):
         return self.get_next_by_pub_date()
+
+    def allow_comments(self):
+        delta = datetime.datetime.now() - self.pub_date
+        return delta.days < 30
     
     class Meta:
         verbose_name_plural = "Entries"
@@ -51,6 +57,6 @@ class CommentSubscriber(models.Model):
 
 class EntryModerator(CommentModerator):
     auto_moderate_field = 'pub_date'
-    moderate_after = 0
+    moderate_after = 15
 
 moderator.register (Entry, EntryModerator)

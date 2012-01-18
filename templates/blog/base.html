@@ -1,3 +1,6 @@
+{% load archive %}
+{% load twitterparsing %}
+
 <!DOCTYPE html> 
 <!--[if lt IE 7 ]> <html class="no-js ie6 {{ env }}" lang="en"> <![endif]-->
 <!--[if IE 7 ]>    <html class="no-js ie7 {{ env }}" lang="en"> <![endif]-->
@@ -5,58 +8,95 @@
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js {{ env }}" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8" />
-  {% block title %}<title>Share and Let Share</title>{% endblock %}
+  <title>{% block title %}Share and Let Share{% endblock %}</title>
   <link rel="shortcut icon" href="/media/assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="/media/assets/css/reset.css" type="text/css" media="screen,projection" />
+  <link rel="stylesheet" href="/media/assets/css/960.css" type="text/css" media="screen,projection" />
   <link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen,projection" />
+  <link rel="stylesheet" href="/media/assets/css/zenburn.css" type="text/css" media="screen,projection" />  
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
 <body>
-  <div id="container">
-    <header class="header clearfix">
-      <hgroup>
-        <h1 class="logo"><a rel="start" href="http://www.debjitbiswas.com">Share <span class="amp">&</span> let Share</a></h1>
-        <h2 class="quote">Personal Weblog of Debjit Biswas...</h2>
-      </hgroup>
-    </header>
-    <section id="content">
-      {% block content %}{% endblock %}
+  <header class="header clearfix">
+    <hgroup>
+      <h1 class="logo"><a rel="start" href="http://www.debjitbiswas.com">Share <span class="amp">&</span> let Share</a></h1>
+      <!--<h2 class="quote">Personal Weblog of Debjit Biswas...</h2>-->
+    </hgroup>
+    <form class="search" action="/search/" method="GET">
+      <span>
+        <input type="text" name="q">
+        <input class="icon" type="image" src="/media/assets/search.png" alt="Search">
+      </span>
+    </form>
+    <a class="homeLink" href="/">
+      <img src="/media/assets/home.png" alt="Home"/>
+    </a>
+    <div class="links">
+      Follow Me: 
+      <a type="application/rss+xml" href="/latest/feed" rel="alternate" title="Subscribe to RSS feeds">
+        <img src="/media/assets/feed-icon.png" alt="RSS"/>
+      </a>
+      <a href="https://plus.google.com/112291730733980096762" title="Follow me on Google+">
+        <img src="/media/assets/gplusicon_small.png" alt="G+"/>
+       </a>
+      <a href="http://twitter.com/debjitbis08" title="Follow me on Twitter">
+        <img src="/media/assets/bird_32_blue.png" alt="@debjitbis08"/>
+       </a>
+    </div>
+  </header>
+  <div id="container" class="container_12">
+    <section id="content" class="grid_8">
+      <div class="internal">
+        {% block content %}{% endblock %}
+      </div>
     </section>
-    <aside id="sidebar">
-      <nav class="nav">
-        <header>
-          <h1>Navigation</h1>
-        </header>
-        <ul>
-          <li><a class="homeLink" href="/">Home</a></li>
-        </ul>
-      </nav>
-      <section class="subscribe">
-        <header>
-          <h1>Subscribe</h1>
-        </header>
-        <a type="application/rss+xml" href="/latest/feed" rel="alternate">RSS</a>
-      </section>
-      <section id="twitterbadge">
-        <h1>
-          <a href="http://twitter.com/debjitbis08">Follow me on twitter: @debjitbis08</a>
-        </h1>
-        {% if tweet %}
-          <ol>
-            {% for tw in tweet %}
-              <li>
-                {{ tw.text|urlize }}
-              </li>
+    <aside id="sidebar" class="grid_4">
+      <div class="internal">
+        {% block sidebar %}
+        <section id="archive">
+          {% get_post_archive as dates %}
+          <h1>Archive</h1>
+          <ul class="archive">
+            {% for date in dates %}
+            <li>
+              <a href="/archive/{{ date|date:"Y" }}/{{ date|date:"M"|lower }}"
+                 title="{{ date|date:"F Y" }}">{{ date|date:"F Y" }}</a>
+              {% comment %}
+              <a href="/archive/{{ date|date:"Y" }}"
+                 title="{{ date|date:"Y" }}">{{ date|date:"Y" }}</a>
+              <ul>
+                {% for month in date.year
+                <li>
+                  
+                </li>
+              </ul>
+              {% endcomment %}
+            </li>
             {% endfor %}
-          </ol>
-        {% else %}
-          Oops! Unable to get updates.
-        {% endif %}
-      </section>
-      <section id="poweredby">
+          </ul>
+        </section>
+        <section id="twitterbadge">
+          <h1>
+            Twitter
+            <a href="http://twitter.com/debjitbis08">@debjitbis08</a>
+          </h1>
+          {% if tweet %}
+            <ol>
+              {% for tw in tweet %}
+                <li>
+                  {{ tw.text|urlize|parseusernames|parsehashtags }}
+                </li>
+              {% endfor %}
+            </ol>
+          {% else %}
+            Oops! Unable to get updates.
+          {% endif %}
+        </section>
         <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25_grey.gif" alt="A Django site." title="A Django site." /></a>
-      </section>
+        {% endblock %}
+      </div>
     </aside>
     <div class="clearleft"></div>
     <footer class="clearfix" id="global-footer">
@@ -67,23 +107,17 @@
   <script type="text/javascript">
     (function () {
       var cjsscript = document.createElement('script');
-      cjsscript.src = "/media/assets/js/control.js";
+      cjsscript.src = "/media/assets/js/mylibs/control.js";
       var cjssib = document.getElementsByTagName('script')[0];
       cjssib.parentNode.insertBefore(cjsscript, cjssib);
     }());
   </script>
   <script type="text/cjs" data-cjssrc="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script type="text/cjs" data-cjssrc="/media/assets/js/jquery.tools.min.js"></script>
   <script type="text/cjs" data-cjssrc="/media/assets/js/base.js"></script>
-  <script type="text/cjs" data-cjssrc="//www.hellobar.com/hellobar.js"></script>
+  <script type="text/cjs" data-cjssrc="/media/assets/js/mylibs/highlight.pack.js"></script>
+  <script type="text/cjs">hljs.initHighlighting();</script>
   <script type="text/javascript">var addthis_config = {"data_track_clikback":true};</script>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=debjitbis08"></script>
-  <script type="text/cjs">
-    new HelloBar(14447,10118);
-  </script>
-  <noscript>
-    Help The Victims of the 8.9 Earthquake in Japan by Spreading Awareness and Aid. <a href="http://goo.gl/wjZQz">Donate</a>
-  </noscript>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=debjitbis08"></script>
   {% if env == 'BASE' %}
   <script type="text/cjs">
 

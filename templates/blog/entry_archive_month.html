@@ -1,10 +1,12 @@
 {% extends "blog/base.html" %}
-{% load comments %}
+
+{% block title %}{{ block.super }} | Entries in {{ month|date:"F, Y" }}{% endblock %}
+
 {% block content %}
 
 {% if entry_list %}
   <header id="log">
-    <h1>Log</h1>
+    <h1>Entries during month of {{ month|date:"F" }} in {{ month.year }}</h1>
   </header>
   {% for entry in entry_list %}
     {% include "blog/includes/entry_list.html" %}

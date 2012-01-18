@@ -1,0 +1,35 @@
+{% load comments %}
+
+<article class="entry">
+  <header>
+    <h1 class="title"><a rel="bookmark" href="{% url entry entry.slug %}">{{ entry.title }}</a></h1>
+  </header>
+  <div class="body summary">
+    {% autoescape off %}
+      {{ entry.body_text|truncatewords_html:50 }}
+    {% endautoescape %}
+  </div>
+  <div class="share">
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style"  addthis:url="http://www.debjitbiswas.com{% url entry entry.slug %}" addthis:title="{{ entry.title }}">
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+      <a class="addthis_button_tweet"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+      <a class="addthis_counter addthis_pill_style"></a>
+    </div>
+    <!-- AddThis Button END -->
+  </div>
+  <footer class="metaData">
+    <span class="ncomments">
+      {% get_comment_count for entry as comment_count %}
+      <a href="{% url entry entry.slug %}#comments"><span class="commentNum">{{ comment_count }} Comments</span></a>
+    </span>//
+    <time class="date" datetime="{{ entry.pub_date|date:"Y-m-d"}}" pubdate="pubdate">
+      {{ entry.pub_date|date:"D, d M Y"}}
+    </time>//
+    <span class="readMore">
+      <a href="{% url entry entry.slug %}" title="Read More" >Read More &rarr;</a>
+    </span>
+  </footer>
+  <div style="clear: both;"></div>
+</article>

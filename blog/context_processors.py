@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.cache import cache
 from datetime import datetime
+from myhome.blog.models import Entry
 import twitter
 
 def env(request):
@@ -23,3 +24,6 @@ def latest_tweets(request):
     cache.set( 'tweet', tweet, settings.TWITTER_TIMEOUT )
 
     return {"tweet": tweet}
+
+def entry_date_list(request):
+    return {'entry_date_list': Entry.objects.dates('pub_date', 'year')};
