@@ -55,7 +55,7 @@
     <aside id="sidebar" class="grid_4">
       <div class="internal">
         {% block sidebar %}
-        <section id="archive">
+        <article id="archive">
           {% get_post_archive as dates %}
           <h1>Archive</h1>
           <ul class="archive">
@@ -76,8 +76,8 @@
             </li>
             {% endfor %}
           </ul>
-        </section>
-        <section id="twitterbadge">
+        </article>
+        <article id="twitterbadge">
           <h1>
             Twitter
             <a href="http://twitter.com/debjitbis08">@debjitbis08</a>
@@ -93,7 +93,7 @@
           {% else %}
             Oops! Unable to get updates.
           {% endif %}
-        </section>
+        </article>
         <a href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25_grey.gif" alt="A Django site." title="A Django site." /></a>
         {% endblock %}
       </div>
