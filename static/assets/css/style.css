@@ -439,7 +439,7 @@ div.clearleft {
   padding-left: 0;
 }
 
-#sidebar section {
+#sidebar article {
   border-bottom: 1px solid #AAA;
   margin-bottom: 1.5em;
 }
