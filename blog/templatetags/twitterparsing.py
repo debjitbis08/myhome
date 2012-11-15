@@ -11,5 +11,5 @@ parseusernames.is_safe = True
 
 @register.filter
 def parsehashtags(value):
-    return re.sub(r'[#]+([A-Za-z0-9-_]+)', r'<a href="http://twitter.com/search/%23\1">#\1</a>', value); 
+    return re.sub(r'\s+[#]+(\w+)', r'<a href="http://twitter.com/search/%23\1">#\1</a>', value); 
 parsehashtags.is_safe = True
