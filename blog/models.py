@@ -57,6 +57,6 @@ class CommentSubscriber(models.Model):
 
 class EntryModerator(CommentModerator):
     auto_moderate_field = 'pub_date'
-    moderate_after = 15
+    moderate_after = 90
 
 moderator.register (Entry, EntryModerator)
