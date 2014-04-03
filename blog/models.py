@@ -43,7 +43,7 @@ class Entry(models.Model):
 
     def allow_comments(self):
         delta = datetime.datetime.now() - self.pub_date
-        return delta.days < 30
+        return True
     
     class Meta:
         verbose_name_plural = "Entries"
@@ -57,6 +57,6 @@ class CommentSubscriber(models.Model):
 
 class EntryModerator(CommentModerator):
     auto_moderate_field = 'pub_date'
-    moderate_after = 180
+    moderate_after = 90
 
 moderator.register (Entry, EntryModerator)
